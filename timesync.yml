@@ -1,0 +1,11 @@
+---
+- name: timesync
+  hosts: all
+  become: yes
+  vars:
+    timesync_ntp_servers:
+      - hostname: foo.example.com
+        iburst: yes
+  roles:
+    - rhel-system-roles.timesync
+      

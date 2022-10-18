@@ -1,0 +1,19 @@
+---
+# tasks file for sample-apache
+
+- name: install httpd
+  yum: 
+    name: httpd
+    state: latest
+- name: service httpd start and enable
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+- name: use template
+  template: 
+    src: ../templates/index.html.j2
+    dest: /var/www/html/index.html
+  notify:
+    name: restart
+

@@ -1,0 +1,9 @@
+--- 
+- name: disale selinux
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: selinux disable
+      selinux:
+        state: disabled
+    

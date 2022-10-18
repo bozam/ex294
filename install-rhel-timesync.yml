@@ -1,0 +1,10 @@
+---
+- name: install rhel system roles
+  hosts: all 
+  become: yes
+  tasks:
+    - name: yum install
+      yum:
+        name: rhel-system-roles
+        state: present
+

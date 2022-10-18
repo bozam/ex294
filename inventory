@@ -1,0 +1,21 @@
+managed1.anslab.com ansible_connection=ssh ansible_ssh_user=vagrant ansible_user=vagrant 
+managed2.anslab.com ansible_connection=ssh ansible_ssh_user=vagrant ansible_user=vagrant 
+managed3.anslab.com ansible_connection=ssh ansible_ssh_user=vagrant ansible_user=vagrant 
+managed4.anslab.com ansible_connection=ssh ansible_ssh_user=vagrant ansible_user=vagrant 
+managed5.anslab.com ansible_connection=ssh ansible_ssh_user=vagrant ansible_user=vagrant 
+
+[dev]
+managed1.anslab.com
+
+[test]
+managed2.anslab.com
+
+[proxy]
+managed3.anslab.com
+
+[prod]
+managed4.anslab.com
+managed5.anslab.com
+
+[webserver:children]
+prod

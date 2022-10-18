@@ -1,0 +1,24 @@
+---
+- name: install packages
+  hosts: dev, prod, webserver
+  become: yes
+  tasks:
+    - name: install packages httpd, mod_ssl, mariadb
+      yum:
+        name: 
+          - httpd
+          - mod_ssl
+          - mariadb
+        state: latest
+    - name: install dev packages on de
+      yum:
+        name: "@Development Tools"
+        state: latest
+      when: '"dev" in group_names'
+
+    - name: update dev
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel*
+      when: '"dev" in group_names'

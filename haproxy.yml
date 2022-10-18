@@ -1,0 +1,23 @@
+---
+- name: haproxy
+  hosts: all
+  become: yes
+  vars:
+    - haproxy_backend_balance_method: 'roundrobin'      
+    - haproxy_backend_servers:
+      - name: app1
+        address: managed4.anslab.com:80
+      - name: app2
+        address: managed5.anslab.com:80
+  tasks:
+    - name: import haproxy role
+      include_role: 
+        name: haproxy-role
+      when: '"proxy" in group_names'
+    - name: import php role
+      include_role: 
+        name: php-role
+      when: '"prod" in group_names'
+
+
+

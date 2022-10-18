@@ -1,0 +1,11 @@
+---
+- name: cron logger
+  hosts: all
+  become: yes
+  tasks:
+    - name: cron
+      cron:
+        name: logger      
+        minute: "*/1"
+        job: 'echo "EX294 in progress" >> /root/ex294logg'
+

@@ -1,0 +1,17 @@
+users:
+- username: bill
+  uid: 10050
+  job: developer
+  password: test123
+- username: chris
+  uid: 10051
+  job: manager
+  password: test123
+- username: dave
+  uid: 10053
+  job: test
+  password: test123
+- username: ethan
+  uid: 10054
+  job: developer
+  password: test123

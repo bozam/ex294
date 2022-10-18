@@ -1,0 +1,33 @@
+---
+- name: create user
+  hosts: all
+  become: yes
+  vars_files:
+    - users.yml
+    - lock.yml
+
+  tasks:
+    - name: create group devops
+      group:
+        name: devops
+        state: present
+      when: '"dev" in group_names'
+    - name: create manager group
+      group:
+        name: managers
+        state: present
+      when: '"proxy" in group_names'
+    - name: create users in devops
+      user:
+        name: "{{ item.username }}" 
+        uid: "{{ item.uid  }}"
+        password: "{{ pw_dev | password_hash('sha512')  }}"
+      when: ('developer' in item.job) and ('dev' in group_names) 
+      loop: "{{ users  }}"
+    - name: create users in devops
+      user:
+        name: "{{ item.username }}"
+        uid: "{{ item.uid  }}"
+        password: "{{ pw_mgr | password_hash('sha512')  }}"
+      when: ('manager' in item.job) and ('proxy' in group_names)
+      loop: "{{ users }}"
